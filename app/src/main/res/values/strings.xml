@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ProjetMovies</string>
+    <string name="logo">Logo</string>
+    <string name="description_example_interstellar">A team of explorers travel through a wormhole in space in an attemp to ensure humanity\'s survival.</string>
+    <string name="gender_example_interstellar">Adventure, Drama, Sci-Fi</string>
+    <string name="title_example">Interstellar</string>
+    <string name="category_example">PG-13</string>
+    <string name="year_example">2014</string>
+    <string name="duration_example">2h 49min</string>
+    <string name="add_to_watchlist">+ Add to watchlist</string>
+    <string name="image_movie">image_movie</string>
+    <string name="first_name">Firstname</string>
+    <string name="name">Name</string>
+    <string name="top_billed_cast">Top billed cast</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="score_reviews">%d</string>
+    <string name="description_icon_rating_global">icone rating global</string>
+    <string name="type_productor">Director</string>
+    <string name="meta_score">Metascore</string>
+    <string name="see_all">See all</string>
+    <string name="nb_reviews">%s critic reviews</string>
+    <string name="rate_this">Rate this</string>
+    <string name="note">%s/10</string>
+    <string name="nb_views">%sM</string>
+    <string name="description_img_actor">Image de l\'acteur</string>
+    <string name="team_technical">Team technical</string>
+</resources>

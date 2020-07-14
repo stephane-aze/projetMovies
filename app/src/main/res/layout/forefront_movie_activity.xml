@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:layout_height="wrap_content"
+    android:background="@color/black_gradient">
+
+    <TextView
+        android:id="@+id/title_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@android:color/transparent"
+        android:text="@string/title_example"
+        android:textSize="@dimen/title_movie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/year_movie"
+        style="@style/TextSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/year_example"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_movie" />
+
+    <TextView
+        android:id="@+id/category_movie"
+        style="@style/TextSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/category_example"
+        app:layout_constraintBottom_toBottomOf="@+id/year_movie"
+        app:layout_constraintStart_toEndOf="@+id/year_movie" />
+
+    <TextView
+        android:id="@+id/duration_movie"
+        style="@style/TextSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/duration_example"
+        app:layout_constraintBottom_toBottomOf="@+id/category_movie"
+        app:layout_constraintStart_toEndOf="@+id/category_movie" />
+
+    <TextView
+        android:id="@+id/gender_movie"
+        style="@style/TextSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/gender_example_interstellar"
+        app:layout_constraintBottom_toBottomOf="@+id/duration_movie"
+        app:layout_constraintStart_toEndOf="@+id/duration_movie" />
+
+    <ImageView
+        android:id="@+id/image_movie"
+        android:layout_width="90dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+
+        android:contentDescription="@string/image_movie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/year_movie"
+        app:srcCompat="@drawable/img_interstellar" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_movie"
+        app:layout_constraintTop_toTopOf="@+id/image_movie">
+
+        <TextView
+            android:id="@+id/description_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:text="@string/description_example_interstellar" />
+
+        <Button
+            android:id="@+id/btn_add_watchlist"
+            style="@style/BtnAddWatchList"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_to_watchlist"
+        />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/note"
+        app:layout_constraintEnd_toEndOf="@+id/icon_rating_global"
+        app:layout_constraintStart_toStartOf="@+id/icon_rating_global"
+        app:layout_constraintTop_toBottomOf="@+id/icon_rating_global" />
+
+    <TextView
+        android:id="@+id/nb_views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nb_views"
+        android:textColor="@color/white_nuance"
+        app:layout_constraintEnd_toEndOf="@+id/note"
+        app:layout_constraintStart_toStartOf="@+id/note"
+        app:layout_constraintTop_toBottomOf="@+id/note" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/button_like"
+
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/rate_this"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/star" />
+
+    <ImageButton
+        android:id="@+id/icon_rating_global"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_icon_rating_global"
+        android:tint="@color/yellow"
+        app:layout_constraintEnd_toStartOf="@+id/button_like"
+        app:layout_constraintTop_toBottomOf="@+id/image_movie"
+        app:srcCompat="@drawable/ic_baseline_star_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/score_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@color/green"
+        android:text="@string/score_reviews"
+        app:layout_constraintBottom_toTopOf="@+id/text_metascore"
+        app:layout_constraintStart_toEndOf="@+id/button_like" />
+
+    <TextView
+        android:id="@+id/rate_this"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rate_this"
+        android:textAllCaps="true"
+        android:textSize="@dimen/small_size_text"
+        app:layout_constraintEnd_toEndOf="@+id/button_like"
+        app:layout_constraintStart_toStartOf="@+id/button_like"
+        app:layout_constraintTop_toTopOf="@+id/note" />
+
+    <TextView
+        android:id="@+id/text_metascore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meta_score"
+        app:layout_constraintEnd_toEndOf="@+id/score_reviews"
+        app:layout_constraintStart_toStartOf="@+id/score_reviews"
+        app:layout_constraintTop_toTopOf="@+id/rate_this" />
+
+    <TextView
+        android:id="@+id/nb_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nb_reviews"
+        android:textColor="@color/white_nuance"
+        android:textSize="@dimen/small_size_text"
+        app:layout_constraintEnd_toEndOf="@+id/text_metascore"
+        app:layout_constraintStart_toStartOf="@+id/text_metascore"
+        app:layout_constraintTop_toBottomOf="@+id/text_metascore" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black_gradient"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_list_actor_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/top_billed_cast"
+        android:layout_marginBottom="30dp"
+        android:textSize="@dimen/title_actor" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_actor"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/list_actors_fragment"
+        />
+
+    <TextView
+        android:id="@+id/title_list_productor_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/team_technical"
+        android:layout_marginBottom="30dp"
+        android:textSize="@dimen/title_actor" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_productor"
+        android:id="@+id/list_crew_fragment"
+
+        android:orientation="vertical" />
+
+</LinearLayout>
