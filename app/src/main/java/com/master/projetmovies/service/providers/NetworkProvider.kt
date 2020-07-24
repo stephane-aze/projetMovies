@@ -3,13 +3,12 @@ package com.master.projetmovies.service.providers
 import android.util.Log
 import com.master.projetmovies.misc.toConversionDuration
 import com.master.projetmovies.model.CastAndStaff
+import com.master.projetmovies.model.Genre
 import com.master.projetmovies.model.Movie
 import com.master.projetmovies.service.NetworkAPI
-import com.master.projetmovies.service.dto.BaseResponse
-import com.master.projetmovies.service.dto.GetCastAndStaffResponse
-import com.master.projetmovies.service.dto.MovieDTO
-import com.master.projetmovies.service.dto.MovieDetailsDTO
+import com.master.projetmovies.service.dto.*
 import com.master.projetmovies.service.mapper.CastAndStaffMapper
+import com.master.projetmovies.service.mapper.GenreMapper
 import com.master.projetmovies.service.mapper.MovieMapper
 //import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
@@ -38,7 +37,6 @@ object NetworkProvider {
                     response: Response<BaseResponse<MovieDTO>>
                 ) {
                     val moviesResponse:BaseResponse<MovieDTO>? = response.body()
-                    Log.d("AZE",moviesResponse?.results.toString())
                     moviesResponse?.let {notNullMoviesResponse->
                         val movies: List<Movie> = MovieMapper().map(notNullMoviesResponse.results)
                         listener.onSuccess(movies)
@@ -50,15 +48,36 @@ object NetworkProvider {
                 }
             })
     }
-    fun getMovieInterstellar(id:Int = movieIdInterstellar, listener: NetworkListener<Movie>) {
+    fun getTopRatedMovies(
+        page: Int = 1,
+        listener: NetworkListener<List<Movie>>
+    ) {
+        networkAPI.getTopRatedMovies(page = page,apiKey = apiKey)
+            .enqueue(object : Callback<BaseResponse<MovieDTO>> {
+                override fun onFailure(call: Call<BaseResponse<MovieDTO>>, t: Throwable) {
+                    listener.onError(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<MovieDTO>>,
+                    response: Response<BaseResponse<MovieDTO>>
+                ) {
+                    val moviesResponse:BaseResponse<MovieDTO>? = response.body()
+                    moviesResponse?.let {notNullMoviesResponse->
+                        val movies: List<Movie> = MovieMapper().map(notNullMoviesResponse.results)
+                        listener.onSuccess(movies)
+                    } ?: listener.onError(Exception())
+                }
+            })
+    }
+    fun getMovie(id:Long, listener: NetworkListener<Movie>) {
         networkAPI.getMovie(apiKey = apiKey,movieId = id)
             .enqueue(object : Callback<MovieDetailsDTO> {
 
                 override fun onResponse(call: Call<MovieDetailsDTO>, response: Response<MovieDetailsDTO>) {
                     val movieDTO = response.body()
                     movieDTO?.let {
-                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration!!.toConversionDuration())
-                        Log.d("net",movie.toString())
+                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration?.toConversionDuration()?:"")
                         listener.onSuccess(movie)
                     }
                 }
@@ -68,7 +87,7 @@ object NetworkProvider {
                 }
             })
     }
-    fun getCastingMovieInterstellar(listener: NetworkListener<CastAndStaff>, id:Int= movieIdInterstellar) {
+    fun getCastingMovie(listener: NetworkListener<CastAndStaff>, id:Long) {
         networkAPI.getCastMovie(apiKey = apiKey,movieId = id).enqueue(object :
             Callback<GetCastAndStaffResponse> {
 
@@ -85,7 +104,94 @@ object NetworkProvider {
             }
         })
     }
-    
+    fun getUpcomingMovies(
+        page: Int = 1,
+        listener: NetworkListener<List<Movie>>
+    ) {
+        networkAPI.getUpcomingMovies(page = page,apiKey = apiKey).enqueue(object : Callback<BaseResponse<MovieDTO>> {
+                override fun onFailure(call: Call<BaseResponse<MovieDTO>>, t: Throwable) {
+                    listener.onError(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<MovieDTO>>,
+                    response: Response<BaseResponse<MovieDTO>>
+                ) {
+                    val moviesResponse:BaseResponse<MovieDTO>? = response.body()
+                    moviesResponse?.let {notNullMoviesResponse->
+                        val movies: List<Movie> = MovieMapper().map(notNullMoviesResponse.results)
+                        listener.onSuccess(movies)
+                    } ?: listener.onError(Exception())
+                }
+
+            })
+    }
+    fun searchMovies(
+       query:String,
+        listener: NetworkListener<List<Movie>>
+    ) {
+        networkAPI.searchMovies(query = query,apiKey = apiKey).enqueue(object : Callback<BaseResponse<MovieDTO>> {
+                override fun onFailure(call: Call<BaseResponse<MovieDTO>>, t: Throwable) {
+                    listener.onError(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<MovieDTO>>,
+                    response: Response<BaseResponse<MovieDTO>>
+                ) {
+                    val moviesResponse:BaseResponse<MovieDTO>? = response.body()
+                    moviesResponse?.let {notNullMoviesResponse->
+                        val movies: List<Movie> = MovieMapper().map(notNullMoviesResponse.results)
+                        listener.onSuccess(movies)
+                    } ?: listener.onError(Exception())
+                }
+
+            })
+    }
+    fun searchMoviesByYear(
+       query:String,
+        listener: NetworkListener<List<Movie>>
+    ) {
+        networkAPI.searchMoviesByYear(query = query,apiKey = apiKey).enqueue(object : Callback<BaseResponse<MovieDTO>> {
+                override fun onFailure(call: Call<BaseResponse<MovieDTO>>, t: Throwable) {
+                    listener.onError(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<MovieDTO>>,
+                    response: Response<BaseResponse<MovieDTO>>
+                ) {
+                    val moviesResponse:BaseResponse<MovieDTO>? = response.body()
+                    moviesResponse?.let {notNullMoviesResponse->
+                        val movies: List<Movie> = MovieMapper().map(notNullMoviesResponse.results)
+                        listener.onSuccess(movies)
+                    } ?: listener.onError(Exception())
+                }
+
+            })
+    }
+    fun getGenresMovies(
+        listener: NetworkListener<List<Genre>>
+    ) {
+        networkAPI.getGenresMovies(apiKey = apiKey).enqueue(object : Callback<List<GenreDTO>> {
+            override fun onFailure(call: Call<List<GenreDTO>>, t: Throwable) {
+                listener.onError(t)
+            }
+
+            override fun onResponse(
+                call: Call<List<GenreDTO>>,
+                response: Response<List<GenreDTO>>
+            ) {
+                val listGenre:List<GenreDTO>? = response.body()
+                listGenre?.let {notNullListGenre->
+                    val genres: List<Genre> = GenreMapper().map(notNullListGenre)
+                    listener.onSuccess(genres)
+                } ?: listener.onError(Exception())
+            }
+
+        })
+    }
+
 
 
 }

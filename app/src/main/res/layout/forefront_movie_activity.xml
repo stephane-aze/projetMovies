@@ -130,13 +130,12 @@
 
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/rate_this"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/image_movie"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/star" />
@@ -150,7 +149,7 @@
         android:layout_marginRight="50dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_icon_rating_global"
-        android:tint="@color/yellow"
+        android:tint="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/button_like"
         app:layout_constraintTop_toBottomOf="@+id/image_movie"
         app:srcCompat="@drawable/ic_baseline_star_24"

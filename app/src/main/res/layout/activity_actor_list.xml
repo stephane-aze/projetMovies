@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black_gradient"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingStart="10dp">
 
     <TextView
         android:id="@+id/title_list_actor_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/top_billed_cast"
         android:layout_marginBottom="30dp"
+        android:text="@string/top_billed_cast"
         android:textSize="@dimen/title_actor" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_actors_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_actor"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/list_actors_fragment"
-        />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_actor" />
 
     <TextView
         android:id="@+id/title_list_productor_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/team_technical"
-        android:layout_marginBottom="30dp"
         android:textSize="@dimen/title_actor" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_crew_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_productor"
-        android:id="@+id/list_crew_fragment"
 
-        android:orientation="vertical" />
+        tools:listitem="@layout/item_productor_details" />
 
 </LinearLayout>

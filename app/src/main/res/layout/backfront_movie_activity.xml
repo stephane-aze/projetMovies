@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_all"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/btn_add"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/title_actor"
         app:layout_constraintEnd_toEndOf="parent" />

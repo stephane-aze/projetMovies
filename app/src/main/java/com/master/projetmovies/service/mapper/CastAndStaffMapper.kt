@@ -31,7 +31,7 @@ class CastAndStaffMapper {
 
     private fun mapStaff(it: StaffDTO): Staff {
         return with(it) {
-            Staff(name = name?:"",job = job?:"")
+            Staff(name = name?:"",job = job?:"",profilePath = profilePath?:"")
         }
     }
 }

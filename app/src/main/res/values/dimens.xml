@@ -5,4 +5,5 @@
     <dimen name="small_size_text">12sp</dimen>
     <dimen name="padding_for_icon_button">50dp</dimen>
     <dimen name="btn_height">30dp</dimen>
+    <dimen name="dimens_title_movie">18sp</dimen>
 </resources>

@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="logo"
-        android:src="@drawable/logo_imdb"
-        android:adjustViewBounds="true">
-    </item>
+        android:id="@+id/item_bande_film"
+        android:icon="@drawable/icon_bande_film"
+        android:state_pressed="true"
+        android:title="@string/films" />
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        />
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:title="@string/my_favorites" />
+    <item
+        android:id="@+id/profiles"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/my_profile" />
+
 </menu>

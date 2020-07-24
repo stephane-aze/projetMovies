@@ -25,4 +25,18 @@
     <string name="nb_views">%sM</string>
     <string name="description_img_actor">Image de l\'acteur</string>
     <string name="team_technical">Team technical</string>
+    <string name="description_image_staff_person">Image staff person\'s</string>
+    <string name="name_du_productor">name du productor</string>
+    <string name="films">Films</string>
+    <string name="search">Recherche</string>
+    <string name="my_favorites">Mes Favorites</string>
+    <string name="my_profile">Mon profil</string>
+    <string name="top_rated">Les mieux notés</string>
+    <string name="popular_movies">Films populaires</string>
+    <string name="profile_email">My email</string>
+    <string name="close">Déconnexion</string>
+    <string name="upcoming">A venir</string>
+    <string name="year">Année</string>
+    <string name="welcome_text">Bienvenue dans Imdb (copie)</string>
+
 </resources>

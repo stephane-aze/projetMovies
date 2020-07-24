@@ -11,9 +11,9 @@ class MovieMapper {
     private fun mapMovie(movieDTO: MovieDTO): Movie {
         return with(movieDTO) {
             duration?.let {
-                Movie(title = title,description= overview,note = rating,imageUrl = posterPath,id = id,genres = emptyList(),duration = conversionDuration(duration))
+                Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),duration = conversionDuration(duration))
             }
-            Movie(title = title,description= overview,note = rating,imageUrl = posterPath,id = id,genres = emptyList())
+            Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList())
         }
     }
     private fun conversionDuration(duration: Int):String{
