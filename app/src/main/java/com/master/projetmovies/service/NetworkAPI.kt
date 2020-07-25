@@ -20,7 +20,8 @@ interface NetworkAPI {
                  @Query("api_key") apiKey:String
                  ): /*Observable<MovieDetailsDTO>*/Call<MovieDetailsDTO>
     @GET("movie/{movie_id}/credits")
-    fun getCastMovie(@Path("movie_id") movieId: Long,@Query("api_key") apiKey:String
+    fun getCastMovie(@Path("movie_id") movieId: Long,
+                     @Query("api_key") apiKey:String
                      ): Call<GetCastAndStaffResponse>
     @GET("movie/top_rated")
     fun getTopRatedMovies(
@@ -33,21 +34,26 @@ interface NetworkAPI {
     @GET("movie/upcoming")
     fun getUpcomingMovies(
         @Query("api_key") apiKey: String,
+        @Query("language") language:String ="fr-FR",
 
         @Query("page") page: Int
     ): Call<BaseResponse<MovieDTO>>
     @GET("genre/movie/list")
     fun getGenresMovies(
-        @Query("api_key") apiKey: String
-    ):Call<List<GenreDTO>>
+        @Query("api_key") apiKey: String,
+        @Query("language") language:String ="fr-FR"
+
+        ):Call<List<GenreDTO>>
     @GET("search/movie")
     fun searchMovies(
         @Query("query") query: String,
+        @Query("language") language:String ="fr-FR",
         @Query("api_key") apiKey: String
     ): Call<BaseResponse<MovieDTO>>
     @GET("discover/movie")
     fun searchMoviesByYear(
         @Query("year") query: String,
+        @Query("language") language:String ="fr-FR",
         @Query("api_key") apiKey: String
     ): Call<BaseResponse<MovieDTO>>
 }

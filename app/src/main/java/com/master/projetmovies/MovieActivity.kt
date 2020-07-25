@@ -88,6 +88,7 @@ class MovieActivity : AppCompatActivity() {
     }
 
     private fun setData() {
+        Log.d("movie",movie.toString())
         with(binding.forefront) {
             movie?.let {
                 durationMovie.text = it.duration
@@ -98,6 +99,7 @@ class MovieActivity : AppCompatActivity() {
                 note.text = getString(R.string.note, it.note.toString())/*it.note.toString()*/
                 nbReviews.text = getString(R.string.nb_reviews,it.nbReview.toString())
                 yearMovie.text = it.year.toString()
+                //textMetascore.text = getString(R.string.score_reviews,it.popularity)
                 Glide.with(applicationContext)
                     .load("https://image.tmdb.org/t/p/w500${it.imageUrl}")
                     .placeholder(R.drawable.img_interstellar)
@@ -118,7 +120,7 @@ class MovieActivity : AppCompatActivity() {
                     }
 
                     override fun onSuccess(data: CastAndStaff) {
-                        Log.d("AZE", data.toString())
+                        //Log.d("AZE", data.toString())
                         movie?.apply {
                             actorList = data.listCast
                             staffList = data.listStaff

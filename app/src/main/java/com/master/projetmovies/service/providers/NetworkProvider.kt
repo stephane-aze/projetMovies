@@ -78,7 +78,7 @@ object NetworkProvider {
                 override fun onResponse(call: Call<MovieDetailsDTO>, response: Response<MovieDetailsDTO>) {
                     val movieDTO = response.body()
                     movieDTO?.let {
-                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration?.toConversionDuration()?:"",year = it.releaseDate.toConversionYear())
+                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration?.toConversionDuration()?:"",year = it.releaseDate?.toConversionYear()?:2014,nbReview = it.popularity?:46f)
                         listener.onSuccess(movie)
                     }
                 }

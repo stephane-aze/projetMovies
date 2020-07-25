@@ -13,15 +13,10 @@ class MovieMapper {
     private fun mapMovie(movieDTO: MovieDTO): Movie {
         return with(movieDTO) {
             duration?.let {
-                Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),duration = duration.toConversionDuration(),year = releaseDate.toConversionYear())
+                Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),duration = duration.toConversionDuration())
             }
-            Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),year = releaseDate.toConversionYear())
+            Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList())
         }
-    }
-    private fun conversionDuration(duration: Int):String{
-        val hours: Int = duration / 60
-        val minutes: Int = duration.rem(60)
-        return "${hours}h${minutes}"
     }
 
 }

@@ -11,4 +11,5 @@ data class MovieDTO(
     @SerializedName("release_date") val releaseDate: String,
     @SerializedName("runtime") val duration: Int?,
     @SerializedName("genre_ids") val genres: List<Int>
+
 )
