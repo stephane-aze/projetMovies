@@ -58,16 +58,16 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
         initView(view)
-        initSpinner(view)
-        searchMovie(view)
+        initSpinner()
+        searchMovie()
         listMoviesView.adapter = searchAdapter
         searchAdapter.movies= mutableListOf()
         searchAdapter.movieListener = { showMovie(it) }
-        //searchEdit.doAfterTextChanged {  }
+
 
     }
 
-    private fun initSpinner(view: View) {
+    private fun initSpinner() {
         val yearCurrent= Calendar.getInstance().get(Calendar.YEAR)
         val itemsSpinner= arrayListOf(getString(R.string.year))
         for(x in  yearCurrent downTo  1988){
@@ -98,7 +98,7 @@ class SearchFragment : Fragment() {
 
     }
 
-    private fun searchMovie(view: View) {
+    private fun searchMovie() {
         binding.editSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
@@ -120,16 +120,19 @@ class SearchFragment : Fragment() {
     }
 
     private fun search(query: String) {
-        NetworkProvider.searchMovies(query = query,listener = object : NetworkListener<List<Movie>>{
-            override fun onSuccess(data: List<Movie>) {
-                searchAdapter.movies=data as MutableList<Movie>
-            }
+        if(query.isNotBlank()){
+            NetworkProvider.searchMovies(query = query,listener = object : NetworkListener<List<Movie>>{
+                override fun onSuccess(data: List<Movie>) {
+                    searchAdapter.movies=data as MutableList<Movie>
+                }
 
-            override fun onError(throwable: Throwable) {
-                Log.e("Error", throwable.localizedMessage)
-            }
+                override fun onError(throwable: Throwable) {
+                    Log.e("Error", throwable.localizedMessage)
+                }
 
-        })
+            })
+
+        }
     }
 
     private fun initView(view: View) {

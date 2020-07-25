@@ -8,7 +8,12 @@
     android:background="@color/black_background"
     tools:context=".fragment.SearchFragment">
 
-
+    <include
+        android:id="@+id/toolbarLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbar"
+        />
 
 
     <SearchView

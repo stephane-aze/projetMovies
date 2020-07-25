@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -19,6 +22,8 @@ class ProfilesFragment : Fragment() {
     private lateinit var binding: FragmentProfilesBinding
     private lateinit var auth: FirebaseAuth
     private var currentUser: FirebaseUser? = null
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +57,19 @@ class ProfilesFragment : Fragment() {
                 .circleCrop()
                 .into(binding.profileImage)
         }
+        val gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient (activity!!, gso)
+
     }
     private fun logout() {
 
         auth.signOut()
+        mGoogleSignInClient.signOut()
         val intent = Intent(context, HomeActivity::class.java)
         startActivity(intent)
 

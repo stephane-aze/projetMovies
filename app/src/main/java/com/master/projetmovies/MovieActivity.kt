@@ -97,6 +97,7 @@ class MovieActivity : AppCompatActivity() {
                 nbViews.text =getString(R.string.nb_views,it.nbView.toString())
                 note.text = getString(R.string.note, it.note.toString())/*it.note.toString()*/
                 nbReviews.text = getString(R.string.nb_reviews,it.nbReview.toString())
+                yearMovie.text = it.year.toString()
                 Glide.with(applicationContext)
                     .load("https://image.tmdb.org/t/p/w500${it.imageUrl}")
                     .placeholder(R.drawable.img_interstellar)
@@ -165,10 +166,12 @@ class MovieActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.hasChild(movieId.toString())) {
-                    Log.d("arfefef","hello")
-                        isAnimated=true
-                }
+                Log.d("arfefef",snapshot.child(movieId.toString()).exists().toString())
+
+                isAnimated=snapshot.child(movieId.toString()).exists()
+                buttonLikes.progress= if(isAnimated)1f else 0f
+
+
             }
         })
         buttonLikes.setOnClickListener {
@@ -183,19 +186,7 @@ class MovieActivity : AppCompatActivity() {
                 }
             }else{
                 database.child("users").child(auth.currentUser!!.uid).
-                child("favorites").addListenerForSingleValueEvent(object: ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                        for (delData in dataSnapshot.children) {
-                            delData.ref.removeValue()
-                        }
-
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.d("Err AZE",error.details)
-                    }
-                })
+                child("favorites").child(movieId.toString()).removeValue()
             }
         }
     }

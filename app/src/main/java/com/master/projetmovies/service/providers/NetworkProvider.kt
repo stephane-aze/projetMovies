@@ -2,6 +2,7 @@ package com.master.projetmovies.service.providers
 
 import android.util.Log
 import com.master.projetmovies.misc.toConversionDuration
+import com.master.projetmovies.misc.toConversionYear
 import com.master.projetmovies.model.CastAndStaff
 import com.master.projetmovies.model.Genre
 import com.master.projetmovies.model.Movie
@@ -77,7 +78,7 @@ object NetworkProvider {
                 override fun onResponse(call: Call<MovieDetailsDTO>, response: Response<MovieDetailsDTO>) {
                     val movieDTO = response.body()
                     movieDTO?.let {
-                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration?.toConversionDuration()?:"")
+                        val movie: Movie = Movie(title = it.title,imageUrl = it.posterPath,note = it.rating,description = it.overview,id = it.id, genres = it.genres,duration = it.duration?.toConversionDuration()?:"",year = it.releaseDate.toConversionYear())
                         listener.onSuccess(movie)
                     }
                 }

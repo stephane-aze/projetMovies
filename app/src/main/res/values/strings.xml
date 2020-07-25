@@ -38,5 +38,6 @@
     <string name="upcoming">A venir</string>
     <string name="year">Année</string>
     <string name="welcome_text">Bienvenue dans Imdb (copie)</string>
+    <string name="image_movie_desc">Image movie</string>
 
 </resources>

@@ -19,3 +19,11 @@ fun Int.toConversionDuration():String{
     val minutes: Int = this.rem(60)
     return "${hours}h${minutes}"
 }
+//region * * * * * Date to Year * * * *
+fun String.toConversionYear():Int{
+
+    val dateSplit=this.split("-")
+    return dateSplit[0].toInt()
+
+
+}

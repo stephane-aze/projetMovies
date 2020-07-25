@@ -1,6 +1,8 @@
 package com.master.projetmovies.service.mapper
 
 
+import com.master.projetmovies.misc.toConversionDuration
+import com.master.projetmovies.misc.toConversionYear
 import com.master.projetmovies.model.Movie
 import com.master.projetmovies.service.dto.MovieDTO
 
@@ -11,9 +13,9 @@ class MovieMapper {
     private fun mapMovie(movieDTO: MovieDTO): Movie {
         return with(movieDTO) {
             duration?.let {
-                Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),duration = conversionDuration(duration))
+                Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),duration = duration.toConversionDuration(),year = releaseDate.toConversionYear())
             }
-            Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList())
+            Movie(title = title,description= overview,note = rating,imageUrl = posterPath?:"",id = id,genres = emptyList(),year = releaseDate.toConversionYear())
         }
     }
     private fun conversionDuration(duration: Int):String{
@@ -21,5 +23,6 @@ class MovieMapper {
         val minutes: Int = duration.rem(60)
         return "${hours}h${minutes}"
     }
+
 }
 

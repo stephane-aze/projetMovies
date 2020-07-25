@@ -29,7 +29,7 @@ class HomeActivity :  AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
         //auth.signOut()
-        //updateUI(auth.currentUser)
+        updateUI(auth.currentUser)
 
         // Google
         val gso =
@@ -95,13 +95,12 @@ class HomeActivity :  AppCompatActivity() {
             }
     }
     private fun updateUI(user: FirebaseUser?) {
-        user?.let {
+        user?.also {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            return
 
         }
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
 
     }
 
